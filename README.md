@@ -1,72 +1,149 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Healthcare Insurance Cost Analysis
 
-## Template Instructions
+Project Overview
 
-Welcome,
+This project is a data analytics application designed to explore, analyse, and interpret healthcare insurance cost data using Python. The objective is to identify the key personal and geographic factors associated with higher insurance charges and demonstrate how data analytics supports evidence-based decision-making in an insurance and underwriting context.
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+The project follows a structured ETL and exploratory analysis workflow using Jupyter Notebooks and Python data analysis libraries. 
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
 
-## How to use this repo
 
-1. Use this template to create your GitHub project repo. Click the **Use this template** button, then click **Create a new repository**.
 
-1. Copy the URL of your repository to your clipboard.
+Dataset Content
 
-1. In VS Code, select **File** -> **Open Folder**.
+The dataset used in this project is a publicly available healthcare insurance dataset containing anonymised individual-level records. Each row represents a policyholder. The dataset includes the following variables:
+	•	age: Age of the policyholder
+	•	sex: Gender
+	•	bmi: Body Mass Index
+	•	children: Number of dependants
+	•	smoker: Smoking status (yes / no)
+	•	region: Geographic region
+	•	charges: Annual insurance charges
 
-1. Select your `vscode-projects` folder, then click the **Select Folder** button on Windows, or the **Open** button on Mac.
+The dataset is of moderate size and suitable for exploratory analysis. No personally identifiable information is included. Raw and cleaned versions of the dataset are stored in clearly defined project folders.
 
-1. From the top menu in VS Code, select **Terminal** > **New Terminal** to open the terminal.
 
-1. In the terminal, type `git clone` followed by the URL of your GitHub repository. Then hit **Enter**. This command will download all the files in your GitHub repository into your vscode-projects folder.
 
-1. In VS Code, select **File** > **Open Folder** again.
+Business Requirements
 
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click **Select Folder**.
+The analysis addresses the following business requirements:
+	•	BR1: Understand the overall distribution of insurance charges and whether costs are concentrated among a minority of individuals.
+	•	BR2: Assess whether smoking status is associated with significantly higher insurance charges.
+	•	BR3: Identify how insurance charges change with age and BMI and whether these relationships appear linear or non-linear.
+	•	BR4: Determine whether average insurance charges differ by geographic region.
+	•	BR5: Identify correlations between key numeric variables to support a data-driven understanding of cost drivers.
 
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate from each other. You need to create your virtual environment, also called a venv, and then ensure that it is activated any time you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select **Command Palette** to open the VS Code command palette.
 
-1. In the command palette, type: *create environment* and select **Python: Create Environment…**
 
-1. Choose **Venv** from the dropdown list.
 
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
+Hypotheses and Validation Approach
 
-1. **DO NOT** click the box next to `requirements.txt`, as you need to do more steps before you can install your dependencies. Click **OK**.
+The following hypotheses were defined at the outset:
+	•	H1: Smokers have higher insurance charges than non-smokers.
+	•	H2: Insurance charges increase with age.
+	•	H3: Higher BMI is associated with higher insurance charges.
+	•	H4: Average insurance charges vary by region, but regional differences are weaker than lifestyle factors such as smoking.
 
-1. You will see a `.venv` folder appear in the file explorer pane to show that the virtual environment has been created.
+Validation methods:
+	•	Grouped descriptive statistics (means and medians)
+	•	Visual comparisons using histograms, box plots, scatter plots, and bar charts
+	•	Correlation analysis of numeric variables
+	•	Evidence-based interpretation rather than model-driven inference
 
-1. **Important**: Note that the `.venv` folder is in the `.gitignore` file so that Git won't track it.
 
-1. Return to the terminal by clicking on the TERMINAL tab, or click on the **Terminal** menu and choose **New Terminal** if no terminal is currently open.
 
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
+Project Plan
 
- ```console
- pip3 install -r requirements.txt
- ```
+High-Level Steps
+	1.	Extract raw data from CSV source
+	2.	Clean and prepare data using an ETL pipeline
+	3.	Perform exploratory data analysis (EDA)
+	4.	Create visualisations aligned to business requirements
+	5.	Produce a predictive report
+	6.	Interpret findings, limitations, and recommendations
 
-1. Open the `jupyter_notebooks` directory, and click on the notebook you want to open.
+Data Management
+	•	Raw data stored in dataset/raw/
+	•	Cleaned data stored in dataset/cleaned/
+	•	Analysis conducted only on cleaned data
+	•	Clear separation between ETL and analysis notebooks
 
-1. Click the **kernel** button and choose **Python Environments**.
 
-Note that the kernel says `Python 3.12.8` as it inherits from the venv, so it will be Python-3.12.8 if that is what is installed on your PC. To confirm this, you can use the command below in a notebook code cell.
+Analysis Techniques Used
 
-```console
-! python --version
-```
+Techniques
+	•	Descriptive statistics (mean, median, count)
+	•	Grouped aggregation and pivot tables
+	•	Feature engineering (age bands, BMI bands)
+	•	Correlation analysis
+	•	Rule-based predictive segmentation
 
-## Deployment Reminders
+Structure Justification
 
-* Set the `.python-version` Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version that closest matches what you used in this project.
-* The project can be deployed to Heroku using the following steps.
+The analysis progresses from high-level summaries to more granular insights, allowing stakeholders to build understanding step-by-step.
 
-1. Log in to Heroku and create an App
-2. At the **Deploy** tab, select **GitHub** as the deployment method.
-3. Select your repository name and click **Search**. Once it is found, click **Connect**.
-4. Select the branch you want to deploy, then click **Deploy Branch**.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button **Open App** at the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the `.slugignore` file.
+Data Limitations and Alternatives
+	•	The dataset is cross-sectional and does not capture changes over time
+	•	No clinical health indicators are included
+	•	Predictive insights rely on historical patterns rather than forecasts
+
+Use of Generative AI Tools
+
+Generative AI tools were used as a supporting aid for:
+	•	Improving code readability and organisation
+	•	Refining analysis
+
+All final outputs were reviewed and validated manually.
+
+
+Ethical Considerations
+	•	The dataset is anonymised and contains no personal identifiers
+	•	No sensitive medical diagnoses are included
+	•	Analysis avoids discriminatory conclusions and focuses on association rather than causation
+	•	Findings are framed to support fair and transparent decision-making
+
+Dashboard Design
+
+This project does not include a deployed dashboard. Instead, the notebooks act as a reporting interface through:
+	•	Clear section headings and narratives
+	•	Visualisations aligned to business questions
+	•	Interpretable tables and summaries
+
+
+Unfixed Bugs
+
+No critical bugs were identified.
+
+
+Development Roadmap
+
+Challenges
+	•	Balancing predictive insight with interpretability
+	•	Avoiding over-engineering while meeting assessment criteria
+
+Future Learning
+	•	Longitudinal and time-series analysis
+	•	Comparing rule-based logic with machine learning models
+	•	Building interactive dashboards using Plotly
+
+
+
+Deployment
+
+This project was not deployed as a live application. 
+
+
+Main Data Analysis Libraries
+	•	pandas – data loading, cleaning, aggregation
+	•	numpy – numerical operations
+	•	matplotlib – base visualisations
+	•	seaborn – statistical plots and heatmaps
+
+Credits
+
+Content
+	•	Public healthcare insurance dataset
+	•	Official Python library documentation (pandas, matplotlib, seaborn)
+
+Media
+	•	No external media assets were used
